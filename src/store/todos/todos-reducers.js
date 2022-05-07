@@ -1,27 +1,21 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {nanoid} from "@reduxjs/toolkit";
-
-//импорты для createReducer
-// import {createReducer} from "@reduxjs/toolkit";
-// import {addTodo, toggleTodo, removeTodo} from "./todos-actions";
-// import {defaultTodos} from "../../data/defaultTodos";
-
-// createReducer
+import {createReducer} from "@reduxjs/toolkit";
+import {addTodo, toggleTodo, removeTodo} from "./todos-actions";
+import {defaultTodos} from "../../data/defaultTodos";
 
 //Вариант 1 без функциии builder
-// export const todosReducer = createReducer(
-//     defaultTodos,
-//     {
-//         [addTodo]: (state, action) => void state.push(action.payload),
-//
-//         [toggleTodo]: (state, action) => {
-//             const todo = state.find(i => i.id === action.payload)
-//             todo.completed = !todo.completed
-//         },
-//
-//         [removeTodo]: (state, action) => state.filter(i => i.id !== action.payload),
-//     }
-// )
+export const todosReducer = createReducer(
+    defaultTodos,
+    {
+        [addTodo]: (state, action) => void state.push(action.payload),
+
+        [toggleTodo]: (state, action) => {
+            const todo = state.find(i => i.id === action.payload)
+            todo.completed = !todo.completed
+        },
+
+        [removeTodo]: (state, action) => state.filter(i => i.id !== action.payload),
+    }
+)
 
 //Вариант 2 с функцией builder (рекомендовано самим Redux)
 // export const todosReducer = createReducer(
@@ -72,45 +66,3 @@ import {nanoid} from "@reduxjs/toolkit";
 //         default: return state
 //     }
 // };
-
-// createSlice (рекомендовано самим Redux)
-// Содержит 4 сущности name, initialState, reducers, extraReducers
-const todoSlice = createSlice({
-    name: '@@todos',
-    initialState: [],
-
-    reducers: {
-        addTodo: {
-            reducer: (state, action) => {
-                state.push(action.payload)
-            },
-            //предподготовка будущего payload
-            prepare: (title) => ({
-                payload: {
-                    title,
-                    id: nanoid(),
-                    completed: false
-                },
-                meta: {},
-            })
-        },
-
-        toggleTodo: (state, action) => {
-            const todo = state.find(i => i.id === action.payload)
-            todo.completed = !todo.completed
-        },
-
-        removeTodo: (state, action) => {
-            return state.filter(i => i.id !== action.payload)
-        },
-    },
-
-    // extraReducers: (builder) => {
-    //     builder
-    //         .addCase()
-    //         .addCase()
-    // },
-})
-
-export const {addTodo, toggleTodo, removeTodo} = todoSlice.actions
-export const todosReducer = todoSlice.reducer

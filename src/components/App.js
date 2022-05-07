@@ -1,6 +1,7 @@
 import Input from "./input";
 import TodoList from "./todoList";
 import Filters from "./Filters";
+import ResetApp from "./ResetApp";
 
 function App() {
     return (
@@ -8,6 +9,7 @@ function App() {
             <Input />
             <Filters />
             <TodoList />
+            <ResetApp />
         </div>
     );
 }

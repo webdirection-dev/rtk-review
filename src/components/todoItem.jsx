@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 // import {toggleTodo, removeTodo} from "../store/todos/todos-actions";
 
 //импорт для createSlice (альтернатива createAction)
-import {toggleTodo, removeTodo} from "../store/todos/todos-reducers";
+import {toggleTodo, removeTodo} from "../store/todos/slices/todos-slice";
 
 const TodoItem = ({id, title, completed}) => {
     const dispatch = useDispatch()

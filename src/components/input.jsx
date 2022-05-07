@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 // import {addTodo} from "../store/todos/todos-actions";
 
 //импорт для createSlice (альтернатива createAction)
-import {addTodo} from "../store/todos/todos-reducers";
+import {addTodo} from "../store/todos/slices/todos-slice";
 
 const Input = () => {
     const dispatch = useDispatch()
